@@ -1,0 +1,28 @@
+# Target compiled Java artifacts
+target/
+*.egg-info
+*.jar
+*.war
+*.ear
+*.class
+
+# Eclipse specific configurations
+.settings/
+.project
+.classpath
+.factorypath
+
+# IntelliJ IDEA workspace files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Log files and application databases
+*.log
+*.mv.db
+*.trace.db
+
+# macOS System files
+.DS_Store
+Thumbs.db
