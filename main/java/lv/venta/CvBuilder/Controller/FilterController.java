@@ -1,5 +1,36 @@
 package lv.venta.CvBuilder.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import lv.venta.CvBuilder.Service.IFilterCVBuilderService;
+
+@Controller
+@RequestMapping("/filter")
 public class FilterController {
 
+    @Autowired
+    private IFilterCVBuilderService filterService;
+
+    //localhost:8080/filter
+    @GetMapping("")
+    public String getFilterPage() {
+        return "data-page";
+    }
+
+    //localhost:8080/filter/europassExperts
+    @GetMapping("/europassExperts")
+    public String getHighLevelLanguages(Model model) {
+        model.addAttribute("cvList", filterService.filterProfilesWithAdvancedLanguages());
+        return "show-all-cv-page";
+    }
+
+    //localhost:8080/filter/searchByCompany?company=Wolt
+    @GetMapping("/searchByCompany")
+    public String getCVsByWorkplace(@RequestParam("company") String company, Model model) {
+        model.addAttribute("cvList", filterService.filterProfilesByWorkplace(company));
+        return "show-all-cv-page";
+    }
 }

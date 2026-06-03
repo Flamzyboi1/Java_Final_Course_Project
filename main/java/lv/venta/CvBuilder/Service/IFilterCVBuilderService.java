@@ -1,5 +1,9 @@
 package lv.venta.CvBuilder.Service;
 
-public interface IFilterCVBuilderService {
+import lv.venta.CvBuilder.Model.CVProfile;
+import java.util.ArrayList;
 
+public interface IFilterCVBuilderService {
+    ArrayList<CVProfile> filterProfilesWithAdvancedLanguages();
+    ArrayList<CVProfile> filterProfilesByWorkplace(String companyName);
 }

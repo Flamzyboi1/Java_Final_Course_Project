@@ -43,6 +43,7 @@ public class CVSkillLink {
 
     @Override
     public String toString() {
-        return idsl + " " + proficiencyLevel;
+        String result = idsl + " " + proficiencyLevel;
+        return result;
     }
 }
