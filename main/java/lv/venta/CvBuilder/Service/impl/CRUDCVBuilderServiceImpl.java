@@ -15,7 +15,9 @@ public class CRUDCVBuilderServiceImpl implements ICRUDCVBuilderService {
 
     @Override
     public ArrayList<CVProfile> selectAllCVProfiles() {
-        return (ArrayList<CVProfile>) cvRepo.findAll();
+        ArrayList<CVProfile> allProfiles = new ArrayList<>();
+        cvRepo.findAll().forEach(allProfiles::add);
+        return allProfiles;
     }
 
     @Override
@@ -43,13 +45,10 @@ public class CRUDCVBuilderServiceImpl implements ICRUDCVBuilderService {
         CVProfile existingProfile = cvRepo.findById(id)
                 .orElseThrow(() -> new Exception("CV record update targets an invalid reference ID"));
         
-       
         existingProfile.setFirstName(cvProfile.getFirstName());
         existingProfile.setLastName(cvProfile.getLastName());
         existingProfile.setEmail(cvProfile.getEmail());
         
         cvRepo.save(existingProfile);
     }
-
-	
 }

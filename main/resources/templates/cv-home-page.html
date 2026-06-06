@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Builder - Home</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
+        h1 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 15px 0; }
+        a { text-decoration: none; color: #1a73e8; font-weight: bold; font-size: 18px; }
+        a:hover { color: #0d47a1; }
+    </style>
+</head>
+<body>
+    <h1>Online Europass CV Builder</h1>
+    <p>Welcome to your academic CV management panel.</p>
+    <hr>
+    <ul>
+        <li><a th:href="@{/cv/showAll}">📋 View & Manage All CV Profiles</a></li>
+        <li><a th:href="@{/cv/insert}">➕ Create New CV Profile</a></li>
+        <li><a th:href="@{/filter}">🔍 Filter & Advanced Search Queries</a></li>
+    </ul>
+</body>
+</html>

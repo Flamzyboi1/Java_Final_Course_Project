@@ -16,23 +16,22 @@ public class CrudController {
     @Autowired
     private ICRUDCVBuilderService cvService;
 
-    
-    
-    //localhost:8080/cv/showAll
+    // READ ALL PROFILES
+    // Localhost Link: http://localhost:8080/cv/showAll
     @GetMapping("/showAll")
     public String getAllCVs(Model model) {
         model.addAttribute("cvList", cvService.selectAllCVProfiles());
         return "show-all-cv-page";
     }
 
-    // CREATE 
-    //localhost:8080/cv/insert
+    // CREATE NEW CV PROFILE 
+    // http://localhost:8080/cv/insert
     @GetMapping("/insert")
     public String getInsertCVForm(Model model) {
         model.addAttribute("cvProfile", new CVProfile());
         return "insert-cv-page";
     }
-
+    
     @PostMapping("/insert")
     public String postInsertCV(@Valid @ModelAttribute("cvProfile") CVProfile cvProfile, BindingResult result) {
         if (result.hasErrors()) {
@@ -42,8 +41,9 @@ public class CrudController {
         return "redirect:/cv/showAll";
     }
 
-    // UPDATE
-    //localhost:8080/cv/update/{id} (e.g., http://localhost:8080/cv/update/1)
+    // UPDATE EXISTING CV PROFILE 
+    // http://localhost:8080/cv/update/1
+    
     @GetMapping("/update/{id}")
     public String getUpdateCVForm(@PathVariable("id") int id, Model model) {
         try {
@@ -68,8 +68,8 @@ public class CrudController {
         }
     }
 
-    // DELETE 
-    //localhost:8080/cv/delete/{id} (e.g., http://localhost:8080/cv/delete/1)
+    // DELETE CV PROFILE
+    // http://localhost:8080/cv/delete/1
     @GetMapping("/delete/{id}")
     public String deleteCV(@PathVariable("id") int id, Model model) {
         try {
