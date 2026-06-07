@@ -27,7 +27,7 @@ public class FilterController {
         return "show-all-cv-page";
     }
 
-    //localhost:8080/filter/searchByCompany?company=Wolt
+    //localhost:8080/filter/searchByCompany?company=Bolt
     @GetMapping("/searchByCompany")
     public String getCVsByWorkplace(@RequestParam("company") String company, Model model) {
         model.addAttribute("cvList", filterService.filterProfilesByWorkplace(company));

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "EXPERIENCE_TABLE")
 public class Experience {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Idex")
@@ -30,8 +31,10 @@ public class Experience {
     @JoinColumn(name = "Idcp")
     private CVProfile cvProfile;
 
+    // Default constructor required by JPA/Hibernate
     public Experience() {}
 
+    // Overloaded constructor for easy instantiation
     public Experience(String company, String jobTitle, String description, CVProfile cvProfile) {
         this.company = company;
         this.jobTitle = jobTitle;
@@ -39,19 +42,49 @@ public class Experience {
         this.cvProfile = cvProfile;
     }
 
-    public int getIdex() { return idex; }
-    public String getCompany() { return company; }
-    public void setCompany(String company) { this.company = company; }
-    public String getJobTitle() { return jobTitle; }
-    public void setJobTitle(String jobTitle) { this.jobTitle = jobTitle; }
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-    public CVProfile getCvProfile() { return cvProfile; }
-    public void setCvProfile(CVProfile cvProfile) { this.cvProfile = cvProfile; }
+    // Getters and Setters
+    public int getIdex() { 
+        return idex; 
+    }
+    
+    public void setIdex(int idex) {
+        this.idex = idex;
+    }
+
+    public String getCompany() { 
+        return company; 
+    }
+    
+    public void setCompany(String company) { 
+        this.company = company; 
+    }
+
+    public String getJobTitle() { 
+        return jobTitle; 
+    }
+    
+    public void setJobTitle(String jobTitle) { 
+        this.jobTitle = jobTitle; 
+    }
+
+    public String getDescription() { 
+        return description; 
+    }
+    
+    public void setDescription(String description) { 
+        this.description = description; 
+    }
+
+    public CVProfile getCvProfile() { 
+        return cvProfile; 
+    }
+    
+    public void setCvProfile(CVProfile cvProfile) { 
+        this.cvProfile = cvProfile; 
+    }
 
     @Override
     public String toString() {
-        String result = idex + " " + jobTitle + " at " + company;
-        return result;
+        return "Experience ID: " + idex + " | " + jobTitle + " at " + company;
     }
 }

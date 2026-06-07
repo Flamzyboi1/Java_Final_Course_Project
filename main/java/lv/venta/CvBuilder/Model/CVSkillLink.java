@@ -2,7 +2,6 @@ package lv.venta.CvBuilder.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "CV_SKILL_LINK_TABLE")
@@ -12,10 +11,10 @@ public class CVSkillLink {
     @Column(name = "Idsl")
     private int idsl;
 
-    @NotNull
-    @Size(min = 2, max = 20, message = "Level must be specified (e.g., Beginner, Expert)")
+    @NotNull(message = "Proficiency level must be selected")
+    @Enumerated(EnumType.STRING)
     @Column(name = "Proficiency_Level")
-    private String proficiencyLevel;
+    private CEFRProficiency proficiencyLevel;
 
     @ManyToOne
     @JoinColumn(name = "Idcp")
@@ -27,23 +26,48 @@ public class CVSkillLink {
 
     public CVSkillLink() {}
 
-    public CVSkillLink(String proficiencyLevel, CVProfile cvProfile, Skill skill) {
+    public CVSkillLink(@NotNull(message = "Proficiency level must be selected") CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
         this.proficiencyLevel = proficiencyLevel;
         this.cvProfile = cvProfile;
         this.skill = skill;
     }
 
-    public int getIdsl() { return idsl; }
-    public String getProficiencyLevel() { return proficiencyLevel; }
-    public void setProficiencyLevel(String proficiencyLevel) { this.proficiencyLevel = proficiencyLevel; }
-    public CVProfile getCvProfile() { return cvProfile; }
-    public void setCvProfile(CVProfile cvProfile) { this.cvProfile = cvProfile; }
-    public Skill getSkill() { return skill; }
-    public void setSkill(Skill skill) { this.skill = skill; }
+    public int getIdsl() { 
+        return idsl; 
+    }
+    
+    public CEFRProficiency getProficiencyLevel() {
+        return proficiencyLevel;
+    }
+
+    public void setProficiencyLevel(CEFRProficiency proficiencyLevel) {
+        this.proficiencyLevel = proficiencyLevel;
+    }
+    
+    public CVProfile getCvProfile() { 
+        return cvProfile; 
+    }
+    
+    public void setCvProfile(CVProfile cvProfile) { 
+        this.cvProfile = cvProfile; 
+    }
+    
+    public Skill getSkill() { 
+        return skill; 
+    }
+    
+    public void setSkill(Skill skill) { 
+        this.skill = skill; 
+    }
+
+
+    public void setSkillName(Skill skill) {
+        this.skill = skill;
+    }
 
     @Override
     public String toString() {
-        String result = idsl + " " + proficiencyLevel;
-        return result;
+        String skillTitle = (skill != null) ? skill.getTitle() : "No Skill Assigned";
+        return idsl + " - " + skillTitle + " (" + proficiencyLevel + ")";
     }
 }

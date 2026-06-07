@@ -18,11 +18,15 @@ public class CVProfile {
     @NotNull
     @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
     @Column(name = "First_Name")
+    @Pattern( regexp = "[A-Z]{1}[a-z]{0,9}",
+    		message = "First Name must Start with capital letter (e.g., Favour)")
     private String firstName;
 
     @NotNull
     @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     @Column(name = "Last_Name")
+    @Pattern( regexp = "[A-Z]{1}[a-z]{0,9}" ,
+    		message = "Last Name must Start with capital letter (e.g., Obi)")
     private String lastName;
     @NotNull(message = "Electronic contact address mail cannot be blank")
     @NotNull

@@ -8,6 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "SKILL_TABLE")
 public class Skill {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Idsk")
@@ -27,15 +28,39 @@ public class Skill {
         this.name = name;
     }
 
-    public int getIdsk() { return idsk; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public Collection<CVSkillLink> getCvSkillLinks() { return cvSkillLinks; }
-    public void setCvSkillLinks(Collection<CVSkillLink> cvSkillLinks) { this.cvSkillLinks = cvSkillLinks; }
+    // Getters and Setters
+    public int getIdsk() { 
+        return idsk; 
+    }
+    
+    public void setIdsk(int idsk) {
+        this.idsk = idsk;
+    }
+
+    public String getName() { 
+        return name; 
+    }
+    
+    public void setName(String name) { 
+        this.name = name; 
+    }
+
+    public Collection<CVSkillLink> getCvSkillLinks() { 
+        return cvSkillLinks; 
+    }
+    
+    public void setCvSkillLinks(Collection<CVSkillLink> cvSkillLinks) { 
+        this.cvSkillLinks = cvSkillLinks; 
+    }
+
+    // FIXED: Maps getTitle() cleanly to the underlying name variable 
+    // This allows CVSkillLink's toString() method to safely read the skill's name!
+    public String getTitle() {
+        return this.name;
+    }
 
     @Override
     public String toString() {
-        String result = idsk + " " + name;
-        return result;
+        return "Skill ID: " + idsk + " | Name: " + name;
     }
 }
