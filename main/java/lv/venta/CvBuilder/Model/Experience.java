@@ -31,18 +31,23 @@ public class Experience {
     @JoinColumn(name = "Idcp")
     private CVProfile cvProfile;
 
-    // Default constructor required by JPA/Hibernate
     public Experience() {}
 
-    // Overloaded constructor for easy instantiation
-    public Experience(String company, String jobTitle, String description, CVProfile cvProfile) {
-        this.company = company;
-        this.jobTitle = jobTitle;
-        this.description = description;
-        this.cvProfile = cvProfile;
+    public Experience(int idex, String company, String jobTitle, String description, CVProfile cvProfile) {
+        setIdex(idex);
+        setCompany(company);
+        setJobTitle(jobTitle);
+        setDescription(description);
+        setCvProfile(cvProfile);
     }
 
-    // Getters and Setters
+    public Experience(String company, String jobTitle, String description, CVProfile cvProfile) {
+        setCompany(company);
+        setJobTitle(jobTitle);
+        setDescription(description);
+        setCvProfile(cvProfile);
+    }
+
     public int getIdex() { 
         return idex; 
     }

@@ -4,6 +4,6 @@ import lv.venta.CvBuilder.Model.CVProfile;
 import java.util.ArrayList;
 
 public interface IFilterCVBuilderService {
-    ArrayList<CVProfile> filterProfilesWithAdvancedLanguages();
-    ArrayList<CVProfile> filterProfilesByWorkplace(String companyName);
+    ArrayList<CVProfile> filterProfilesWithAdvancedLanguages() throws Exception;
+    ArrayList<CVProfile> filterProfilesByWorkplace(String companyName) throws Exception;
 }

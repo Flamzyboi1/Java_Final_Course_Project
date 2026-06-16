@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "EDUCATION_TABLE")
 public class Education {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IDed")
@@ -28,19 +29,50 @@ public class Education {
 
     public Education() {}
 
-    public Education(String institution, String degree, CVProfile cvProfile) {
-        this.institution = institution;
-        this.degree = degree;
-        this.cvProfile = cvProfile;
+    public Education(int ided, String institution, String degree, CVProfile cvProfile) {
+        setIded(ided);
+        setInstitution(institution);
+        setDegree(degree);
+        setCvProfile(cvProfile);
     }
 
-    public int getIded() { return ided; }
-    public String getInstitution() { return institution; }
-    public void setInstitution(String institution) { this.institution = institution; }
-    public String getDegree() { return degree; }
-    public void setDegree(String degree) { this.degree = degree; }
-    public CVProfile getCvProfile() { return cvProfile; }
-    public void setCvProfile(CVProfile cvProfile) { this.cvProfile = cvProfile; }
+    public Education(String institution, String degree, CVProfile cvProfile) {
+        setInstitution(institution);
+        setDegree(degree);
+        setCvProfile(cvProfile);
+    }
+
+    public int getIded() { 
+        return ided; 
+    }
+
+    public void setIded(int ided) { 
+        this.ided = ided; 
+    }
+
+    public String getInstitution() { 
+        return institution; 
+    }
+
+    public void setInstitution(String institution) { 
+        this.institution = institution; 
+    }
+
+    public String getDegree() { 
+        return degree; 
+    }
+
+    public void setDegree(String degree) { 
+        this.degree = degree; 
+    }
+
+    public CVProfile getCvProfile() { 
+        return cvProfile; 
+    }
+
+    public void setCvProfile(CVProfile cvProfile) { 
+        this.cvProfile = cvProfile; 
+    }
 
     @Override
     public String toString() {

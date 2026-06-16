@@ -23,14 +23,24 @@ public class FilterController {
     //localhost:8080/filter/europassExperts
     @GetMapping("/europassExperts")
     public String getHighLevelLanguages(Model model) {
-        model.addAttribute("cvList", filterService.filterProfilesWithAdvancedLanguages());
-        return "show-all-cv-page";
+        try {
+            model.addAttribute("cvList", filterService.filterProfilesWithAdvancedLanguages());
+            return "show-all-cv-page";
+        } catch (Exception e) {
+            model.addAttribute("box", e.getMessage());
+            return "error-page";
+        }
     }
 
     //localhost:8080/filter/searchByCompany?company=Bolt
     @GetMapping("/searchByCompany")
-    public String getCVsByWorkplace(@RequestParam("company") String company, Model model) {
-        model.addAttribute("cvList", filterService.filterProfilesByWorkplace(company));
-        return "show-all-cv-page";
+    public String getCVsByWorkplace(@RequestParam(name = "company") String company, Model model) {
+        try {
+            model.addAttribute("cvList", filterService.filterProfilesByWorkplace(company));
+            return "show-all-cv-page";
+        } catch (Exception e) {
+            model.addAttribute("box", e.getMessage());
+            return "error-page";
+        }
     }
 }

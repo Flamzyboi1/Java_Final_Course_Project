@@ -24,11 +24,15 @@ public class Skill {
 
     public Skill() {}
 
-    public Skill(String name) {
-        this.name = name;
+    public Skill(int idsk, String name) {
+        setIdsk(idsk);
+        setName(name);
     }
 
-    // Getters and Setters
+    public Skill(String name) {
+        setName(name);
+    }
+
     public int getIdsk() { 
         return idsk; 
     }
@@ -53,8 +57,6 @@ public class Skill {
         this.cvSkillLinks = cvSkillLinks; 
     }
 
-    // FIXED: Maps getTitle() cleanly to the underlying name variable 
-    // This allows CVSkillLink's toString() method to safely read the skill's name!
     public String getTitle() {
         return this.name;
     }

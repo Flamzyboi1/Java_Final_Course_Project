@@ -15,12 +15,23 @@ public class FilterServiceImpl implements IFilterCVBuilderService {
     private ICVProfile cvRepo;
 
     @Override
-    public ArrayList<CVProfile> filterProfilesWithAdvancedLanguages() {
-        return cvRepo.findProfilesWithCefrLevelAdvanced();
+    public ArrayList<CVProfile> filterProfilesWithAdvancedLanguages() throws Exception {
+        ArrayList<CVProfile> result = cvRepo.findProfilesWithCefrLevelAdvanced();
+        if (result == null || result.isEmpty()) {
+            throw new Exception("There are no CV profiles with advanced language levels");
+        }
+        return result;
     }
 
     @Override
-    public ArrayList<CVProfile> filterProfilesByWorkplace(String companyName) { 
-        return cvRepo.findByExperiencesCompanyContainingIgnoreCase(companyName);
+    public ArrayList<CVProfile> filterProfilesByWorkplace(String companyName) throws Exception {
+        if (companyName == null || companyName.isEmpty()) {
+            throw new Exception("Company name input is incorrect!");
+        }
+        ArrayList<CVProfile> result = cvRepo.findByExperiencesCompanyContainingIgnoreCase(companyName);
+        if (result == null || result.isEmpty()) {
+            throw new Exception("There are no CV profiles under company: " + companyName);
+        }
+        return result;
     }
 }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "CV_SKILL_LINK_TABLE")
 public class CVSkillLink {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Idsl")
@@ -26,14 +27,25 @@ public class CVSkillLink {
 
     public CVSkillLink() {}
 
-    public CVSkillLink(@NotNull(message = "Proficiency level must be selected") CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
-        this.proficiencyLevel = proficiencyLevel;
-        this.cvProfile = cvProfile;
-        this.skill = skill;
+    public CVSkillLink(int idsl, CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
+        setIdsl(idsl);
+        setProficiencyLevel(proficiencyLevel);
+        setCvProfile(cvProfile);
+        setSkill(skill);
+    }
+
+    public CVSkillLink(CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
+        setProficiencyLevel(proficiencyLevel);
+        setCvProfile(cvProfile);
+        setSkill(skill);
     }
 
     public int getIdsl() { 
         return idsl; 
+    }
+
+    public void setIdsl(int idsl) {
+        this.idsl = idsl;
     }
     
     public CEFRProficiency getProficiencyLevel() {
@@ -59,7 +71,6 @@ public class CVSkillLink {
     public void setSkill(Skill skill) { 
         this.skill = skill; 
     }
-
 
     public void setSkillName(Skill skill) {
         this.skill = skill;

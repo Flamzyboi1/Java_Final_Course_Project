@@ -17,7 +17,7 @@ public class CrudController {
     private ICRUDCVBuilderService cvService;
 
     // READ ALL PROFILES
-    // Localhost Link: http://localhost:8080/cv/showAll
+    //localhost:8080/cv/showAll
     @GetMapping("/showAll")
     public String getAllCVs(Model model) {
         model.addAttribute("cvList", cvService.selectAllCVProfiles());
@@ -25,7 +25,7 @@ public class CrudController {
     }
 
     // CREATE NEW CV PROFILE 
-    // http://localhost:8080/cv/insert
+    //localhost:8080/cv/insert
     @GetMapping("/insert")
     public String getInsertCVForm(Model model) {
         model.addAttribute("cvProfile", new CVProfile());
@@ -42,7 +42,7 @@ public class CrudController {
     }
 
     // UPDATE EXISTING CV PROFILE 
-    // http://localhost:8080/cv/update/1
+    // localhost:8080/cv/update/1
     
     @GetMapping("/update/{id}")
     public String getUpdateCVForm(@PathVariable("id") int id, Model model) {
@@ -69,7 +69,7 @@ public class CrudController {
     }
 
     // DELETE CV PROFILE
-    // http://localhost:8080/cv/delete/1
+    //localhost:8080/cv/delete/1
     @GetMapping("/delete/{id}")
     public String deleteCV(@PathVariable("id") int id, Model model) {
         try {
