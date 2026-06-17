@@ -39,7 +39,7 @@ public class FilterController {
             model.addAttribute("cvList", filterService.filterProfilesByWorkplace(company));
             return "show-all-cv-page";
         } catch (Exception e) {
-            model.addAttribute("box", e.getMessage());
+            model.addAttribute("errorMsg", e.getMessage());
             return "error-page";
         }
     }
