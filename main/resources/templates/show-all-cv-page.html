@@ -5,44 +5,60 @@
     <title>All CV Profiles</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .table-container { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; vertical-align: middle; }
         th { background-color: #1a73e8; color: white; }
-        tr:hover { background-color: #f1f1f1; }
-        .btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; color: white; font-weight: bold; }
-        .btn-update { background-color: #f4b400; margin-right: 5px; }
-        .btn-delete { background-color: #d93025; }
-        .btn-back { background-color: #5f6368; display: inline-block; margin-top: 20px; }
+        tr:hover { background-color: #f1f3f4; }
+        .btn-action { display: inline-block; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px; text-align: center; }
+        .btn-add { background-color: #1a73e8; color: white; display: inline-block; margin-bottom: 20px; padding: 10px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; }
+        .btn-edit { background-color: #f4b400; color: white; }
+        .btn-delete { background-color: #d93025; color: white; }
+        .btn-dashboard { background-color: #5f6368; color: white; display: inline-block; padding: 10px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; }
+        .btn-dashboard:hover { background-color: #45494e; }
+        .actions-flex { display: flex; gap: 8px; white-space: nowrap; align-items: center; }
     </style>
 </head>
 <body>
-    <h1>Registered CV Profiles</h1>
+
+    <h1>Europass CV Registry Panel</h1>
     <hr>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email Address</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="cv : ${cvList}">
-                <td th:text="${cv.idcp}">1</td>
-                <td th:text="${cv.firstName}">First</td>
-                <td th:text="${cv.lastName}">Last</td>
-                <td th:text="${cv.email}">email@domain.com</td>
-                <td>
-                    <a th:href="@{/cv/update/{id}(id=${cv.idcp})}" class="btn btn-update">Edit</a>
-                    <a th:href="@{/cv/delete/{id}(id=${cv.idcp})}" class="btn btn-delete" 
-                       onclick="return confirm('Are you sure you want to delete this CV profile?');">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     
-    <a th:href="@{/}" class="btn btn-back">⬅ Back to Dashboard</a>
+    <div class="table-container">
+        <a th:href="@{/cv/insert}" class="btn-add">Add New CV Profile</a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Professional Summary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cv : ${cvList}">
+                    <td th:text="${cv.idcp}"></td>
+                    <td th:text="${cv.firstName}"></td>
+                    <td th:text="${cv.lastName}"></td>
+                    <td th:text="${cv.email}"></td>
+                    <td th:text="${cv.summary != null ? cv.summary : 'No summary provided.'}"></td>
+                    <td>
+                        <div class="actions-flex">
+                            <a th:href="@{/cv/update/{id}(id=${cv.idcp})}" class="btn-action btn-edit">Edit</a>
+                            <a th:href="@{/cv/delete/{id}(id=${cv.idcp})}" 
+                               th:onclick="return confirm('Are you sure you want to delete the CV profile for ' + [[${cv.firstName}]] + ' ' + [[${cv.lastName}]] + '?');" 
+                               class="btn-action btn-delete">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/}" class="btn-dashboard">⬅ Back to Dashboard</a>
+    </div>
+
 </body>
 </html>

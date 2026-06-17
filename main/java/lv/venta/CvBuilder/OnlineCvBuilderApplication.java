@@ -45,11 +45,13 @@ public class OnlineCvBuilderApplication {
                 profile1.setFirstName("Christine");
                 profile1.setLastName("Uzoekwe");
                 profile1.setEmail("christine@venta.lv");
+                profile1.setSummary("Detail-oriented academic assistant specializing in student research coordination.");
                 cvRepo.save(profile1); 
 
                 Experience exp1 = new Experience();
                 exp1.setCompany("Ventspils University of Applied Sciences");
                 exp1.setJobTitle("Research Assistant");
+                exp1.setDescription("Assisted faculty members in compiling data and managing technical documentation.");
                 exp1.setCvProfile(profile1); 
                 experienceRepo.save(exp1);
 
@@ -64,11 +66,13 @@ public class OnlineCvBuilderApplication {
                 profile2.setFirstName("Daniel");
                 profile2.setLastName("Nwachukwu");
                 profile2.setEmail("Lovedaniel@gmail.com");
+                profile2.setSummary("Junior software engineer passionate about scalable backend architecture.");
                 cvRepo.save(profile2);
 
                 Experience exp2 = new Experience();
                 exp2.setCompany("Accenture Baltics");
                 exp2.setJobTitle("Junior Software Engineer");
+                exp2.setDescription("Developed and unit-tested RESTful API endpoints using Spring Boot frameworks.");
                 exp2.setCvProfile(profile2);
                 experienceRepo.save(exp2);
 
@@ -83,11 +87,13 @@ public class OnlineCvBuilderApplication {
                 profile3.setFirstName("Favour");
                 profile3.setLastName("Obi");
                 profile3.setEmail("obidfavo@venta.lv");
+                profile3.setSummary("B.Sc. Computer Science student with practical experience in full-stack development and data management systems.");
                 cvRepo.save(profile3);
 
                 Experience exp3 = new Experience();
                 exp3.setCompany("Bolt Delivery Systems");
                 exp3.setJobTitle("Logistics Analyst");
+                exp3.setDescription("Managed fast-paced supply chain delivery logistics, analyzing transit metrics for route optimization.");
                 exp3.setCvProfile(profile3);
                 experienceRepo.save(exp3);
 
