@@ -1,11 +1,9 @@
 package lv.venta.CvBuilder.Repo;
 
-import org.springframework.data.repository.CrudRepository;
-
 import lv.venta.CvBuilder.Model.Skill;
-
-import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
 public interface ISkill extends CrudRepository<Skill, Integer> {
-    Optional<Skill> findByNameIgnoreCase(String name);
+    List<Skill> findByNameContainingIgnoreCase(String name);
 }

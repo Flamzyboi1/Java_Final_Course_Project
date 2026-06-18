@@ -2,49 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Manage CV Profile</title>
+    <title>Insert CV Profile</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
-        .form-container { background: white; padding: 25px; border-radius: 8px; max-width: 500px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .form-container { background: white; padding: 25px; border-radius: 8px; max-width: 600px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        input[type="text"], input[type="email"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .error-msg { color: #d93025; font-size: 14px; margin-top: 5px; }
-        .btn-submit { background-color: #1a73e8; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        .btn-submit:hover { background-color: #0d47a1; }
-        .btn-back { background-color: #5f6368; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; inline-block; margin-left: 10px; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-submit { background-color: #34a853; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .btn-back { background-color: #5f6368; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; display: inline-block; margin-left: 10px; }
+        .section-header { margin-top: 20px; border-bottom: 2px solid #34a853; padding-bottom: 5px; }
     </style>
 </head>
 <body>
-    <h1>Submit Europass CV Personal Details</h1>
-    <hr>
+    <h1>Insert CV Profile</h1>
     <div class="form-container">
-        <form th:action="${cvProfile.idcp == 0} ? @{/cv/insert} : @{/cv/update/{id}(id=${cvProfile.idcp})}" 
-              th:object="${cvProfile}" method="post">
-              
+        <form th:action="@{/cv/update/{id}(id=${cvProfile.idcp})}" th:object="${cvProfile}" method="post">
             <input type="hidden" th:field="*{idcp}" />
 
             <div class="form-group">
                 <label>First Name:</label>
-                <input type="text" th:field="*{firstName}" placeholder="e.g., Christine"/>
-                <div class="error-msg" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                <input type="text" th:field="*{firstName}" required />
             </div>
 
             <div class="form-group">
                 <label>Last Name:</label>
-                <input type="text" th:field="*{lastName}" placeholder="e.g., Uzoekwe"/>
-                <div class="error-msg" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                <input type="text" th:field="*{lastName}" required />
             </div>
 
             <div class="form-group">
-                <label>Email Address:</label>
-                <input type="text" th:field="*{email}" placeholder="e.g., s67ghhjh@venta.lv"/>
-                <div class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required />
             </div>
 
-            <button type="submit" class="btn-submit">Save CV Entry</button>
+            <div class="form-group">
+                <label>Summary:</label>
+                <textarea th:field="*{summaryDescription}" rows="3"></textarea>
+            </div>
+			
+			<div class="form-group">
+			                <label>Education:</label>
+			                <input type="educations" th:field="*{educations}" required />
+			 </div>
+            
+
+            <h3 class="section-header">Experience</h3>
+            <div th:each="exp, iter : *{experiences}">
+                <div class="form-group">
+                    <label>Experience Entry:</label>
+                    <input type="text" th:field="*{experiences[__${iter.index}__].company}" placeholder="Company/Position" />
+                </div>
+            </div>
+
+            <h3 class="section-header">Skills</h3>
+            <div th:each="link, iter : *{cvSkillLinks}">
+                <div class="form-group">
+                    <label>Skill Name:</label>
+                    <input type="text" th:field="*{cvSkillLinks[__${iter.index}__].skill.title}" readonly />
+                </div>
+            </div>
+
+            <br/>
+            <button type="submit" class="btn-submit">Insert Profile</button>
             <a th:href="@{/cv/showAll}" class="btn-back">Cancel</a>
         </form>
-    </div>
+    </div>/
 </body>
 </html>

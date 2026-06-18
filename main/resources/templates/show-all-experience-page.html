@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Work Experiences</title>
+</head>
+<body>
+    <h1>Work Experience Records</h1>
+    <a th:href="@{/cv/experience/insert}">+ Add New Experience</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Job Title</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="exp : ${experienceList}">
+                <td th:text="${exp.idexp}"></td>
+                <td th:text="${exp.company}"></td>
+                <td th:text="${exp.jobTitle}"></td>
+                <td>
+                    <a th:href="@{/cv/experience/update/{id}(id=${exp.idexp})}">Edit</a>
+                    <a th:href="@{/cv/experience/delete/{id}(id=${exp.idexp})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/cv/showAll}">Back to CV List</a>
+</body>
+</html>

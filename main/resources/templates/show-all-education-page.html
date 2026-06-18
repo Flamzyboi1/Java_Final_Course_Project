@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Education Records</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #34a853; color: white; }
+        .btn-action { color: #d93025; text-decoration: none; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Education Records</h1>
+    <a th:href="@{/cv/education/insert}">Add New Education</a>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Institution</th>
+                <th>Degree</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="edu : ${educationList}">
+                <td th:text="${edu.ided}"></td>
+                <td th:text="${edu.institution}"></td>
+                <td th:text="${edu.degree}"></td>
+                <td>
+                    <a th:href="@{/cv/education/update/{id}(id=${edu.ided})}">Edit</a> |
+                    <a th:href="@{/cv/education/delete/{id}(id=${edu.ided})}" class="btn-action">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/cv/showAll}">Back to CVs</a>
+</body>
+</html>

@@ -27,53 +27,26 @@ public class CVSkillLink {
 
     public CVSkillLink() {}
 
-    public CVSkillLink(int idsl, CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
-        setIdsl(idsl);
-        setProficiencyLevel(proficiencyLevel);
-        setCvProfile(cvProfile);
-        setSkill(skill);
-    }
-
     public CVSkillLink(CEFRProficiency proficiencyLevel, CVProfile cvProfile, Skill skill) {
-        setProficiencyLevel(proficiencyLevel);
-        setCvProfile(cvProfile);
-        setSkill(skill);
-    }
-
-    public int getIdsl() { 
-        return idsl; 
-    }
-
-    public void setIdsl(int idsl) {
-        this.idsl = idsl;
-    }
-    
-    public CEFRProficiency getProficiencyLevel() {
-        return proficiencyLevel;
-    }
-
-    public void setProficiencyLevel(CEFRProficiency proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
-    }
-    
-    public CVProfile getCvProfile() { 
-        return cvProfile; 
-    }
-    
-    public void setCvProfile(CVProfile cvProfile) { 
-        this.cvProfile = cvProfile; 
-    }
-    
-    public Skill getSkill() { 
-        return skill; 
-    }
-    
-    public void setSkill(Skill skill) { 
-        this.skill = skill; 
+        this.cvProfile = cvProfile;
+        this.skill = skill;
     }
 
-    public void setSkillName(Skill skill) {
-        this.skill = skill;
+    public int getIdsl() { return idsl; }
+    public void setIdsl(int idsl) { this.idsl = idsl; }
+
+    public CEFRProficiency getProficiencyLevel() { return proficiencyLevel; }
+    public void setProficiencyLevel(CEFRProficiency proficiencyLevel) { this.proficiencyLevel = proficiencyLevel; }
+
+    public CVProfile getCvProfile() { return cvProfile; }
+    public void setCvProfile(CVProfile cvProfile) { this.cvProfile = cvProfile; }
+
+    public Skill getSkill() { return skill; }
+    public void setSkill(Skill skill) { this.skill = skill; }
+
+    public String getLevel() {
+        return (proficiencyLevel != null) ? proficiencyLevel.name() : "N/A";
     }
 
     @Override

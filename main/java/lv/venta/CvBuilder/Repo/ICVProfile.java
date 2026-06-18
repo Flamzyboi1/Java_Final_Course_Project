@@ -1,20 +1,19 @@
 package lv.venta.CvBuilder.Repo;
 
-import lv.venta.CvBuilder.Model.CVProfile;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-import java.util.ArrayList;
+import lv.venta.CvBuilder.Model.CVProfile;
 
-@Repository
 public interface ICVProfile extends CrudRepository<CVProfile, Integer> {
 
-    
-    @Query("SELECT cv FROM CVProfile cv JOIN cv.cvSkillLinks links WHERE UPPER(links.proficiencyLevel) IN ('C1', 'C2', 'ADVANCED')")
-    ArrayList<CVProfile> findProfilesWithCefrLevelAdvanced();
+    List<CVProfile> findByLastNameContainingIgnoreCase(String lastName);
 
-    
-    @Query("SELECT cv FROM CVProfile cv JOIN cv.experiences exp WHERE UPPER(exp.company) LIKE UPPER(CONCAT('%', :company, '%'))")
-    ArrayList<CVProfile> findByExperiencesCompanyContainingIgnoreCase(@Param("company") String company);
+    List<CVProfile> findByExperiencesCompanyContainingIgnoreCase(String companyName);
+
+    Optional<CVProfile> findByEmail(String email);
+
+    @Query("SELECT DISTINCT c FROM CVProfile c JOIN c.cvSkillLinks l WHERE l.proficiencyLevel IN (lv.venta.CvBuilder.Model.CEFRProficiency.C1, lv.venta.CvBuilder.Model.CEFRProficiency.C2)")
+    List<CVProfile> findProfilesWithCefrLevelAdvanced();
 }

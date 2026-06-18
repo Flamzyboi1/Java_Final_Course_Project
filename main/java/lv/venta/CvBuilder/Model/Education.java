@@ -14,12 +14,12 @@ public class Education {
     private int ided;
 
     @NotNull
-    @Size(min = 2, max = 150, message = "Institution name must be between 2 and 150 characters")
+    @Size(min = 2, max = 150)
     @Column(name = "Institution")
     private String institution;
 
     @NotNull
-    @Size(min = 2, max = 100, message = "Degree program must be between 2 and 100 characters")
+    @Size(min = 2, max = 100)
     @Column(name = "Degree")
     private String degree;
 
@@ -29,54 +29,26 @@ public class Education {
 
     public Education() {}
 
-    public Education(int ided, String institution, String degree, CVProfile cvProfile) {
-        setIded(ided);
-        setInstitution(institution);
-        setDegree(degree);
-        setCvProfile(cvProfile);
-    }
-
     public Education(String institution, String degree, CVProfile cvProfile) {
-        setInstitution(institution);
-        setDegree(degree);
-        setCvProfile(cvProfile);
+        this.institution = institution;
+        this.degree = degree;
+        this.cvProfile = cvProfile;
     }
 
-    public int getIded() { 
-        return ided; 
-    }
+    public int getIded() { return ided; }
+    public void setIded(int ided) { this.ided = ided; }
 
-    public void setIded(int ided) { 
-        this.ided = ided; 
-    }
+    public String getInstitution() { return institution; }
+    public void setInstitution(String institution) { this.institution = institution; }
 
-    public String getInstitution() { 
-        return institution; 
-    }
+    public String getDegree() { return degree; }
+    public void setDegree(String degree) { this.degree = degree; }
 
-    public void setInstitution(String institution) { 
-        this.institution = institution; 
-    }
-
-    public String getDegree() { 
-        return degree; 
-    }
-
-    public void setDegree(String degree) { 
-        this.degree = degree; 
-    }
-
-    public CVProfile getCvProfile() { 
-        return cvProfile; 
-    }
-
-    public void setCvProfile(CVProfile cvProfile) { 
-        this.cvProfile = cvProfile; 
-    }
+    public CVProfile getCvProfile() { return cvProfile; }
+    public void setCvProfile(CVProfile cvProfile) { this.cvProfile = cvProfile; }
 
     @Override
     public String toString() {
-        String result = ided + " " + degree + " from " + institution;
-        return result;
+        return ided + " " + degree + " from " + institution;
     }
 }
